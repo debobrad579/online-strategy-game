@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+    margin: 0;
+}
+
+.full-screen-container {
+    background-color: hsl(0, 0%, 17%);
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-container {
+    background-color: hsl(0, 0%, 8%);
+    padding: 50px 30px;
+    min-width: 400px;
+    width: 50%;
+    max-width: 600px;
+}
+
+.login-title {
+    color: white;
+    text-align: center;
+    margin: 0;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    font-weight: normal;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    color: white;
+    font-weight: lighter;
+    font-size: 1.5em;
+    margin-bottom: 7px;
+}
+
+.input-group input {
+    font-size: 1.5em;
+    padding: .1em .25em;
+    background-color: hsla(201, 100%, 91%, 0.3);
+    border: 1px solid hsl(201, 100%, 6%);
+    outline: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: lighter;
+}
+
+.input-group input:focus {
+    border: 1px solid hsl(67, 56%, 53%);
+}
+
+.login-button {
+    padding: 10px 30px;
+    width: 100%;
+    border-radius: 5px; 
+    background-color: hsl(90, 27%, 46%);
+    border: 1px solid hsl(67, 56%, 53%);
+    outline: none;
+    font-size: 1.5em;
+    color: white;
+    font-weight: lighter;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: hsl(90, 27%, 36%)
+}
+
+.login-button:focus {
+    background-color: hsl(90, 27%, 26%)
+}
+
+.login-link {
+    color: white;
+    display: table;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: -50px;
+}
+
+.login-link span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(25, 174, 243);
+}
+
+a:hover {
+    color: rgb(1, 121, 177);
+}

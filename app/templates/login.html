@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block head %}
+    <script src="{% static 'js/users.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+    <div class="full-screen-container">
+        <div class="login-container">
+            <h3 class="login-title">Title</h3>
+            <div class="input-group">
+                <label>Username</label>
+                <input data-username autofocus type="text" name="username" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>Password</label>
+                <input data-password type="password" name="password" validity="Invalid field">
+            </div>
+            <button data-login-button class="login-button">Sign In</button>
+            <div class="login-link">
+                <span>Don't have an account? <a href="{% url 'register' %}">Register here.</a></span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
