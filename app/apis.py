@@ -15,7 +15,7 @@ def login(request):
 
     if not User.objects.filter(username=username).exists():
         return JsonResponse({
-            "error": "Invalid username.",
+            "error_message": "Invalid username.",
             "error_field": "username",
             "successful": False
         })
@@ -24,7 +24,7 @@ def login(request):
 
     if user is None:
         return JsonResponse({
-            "error": "Incorrect password.",
+            "error_message": "Incorrect password.",
             "error_field": "password",
             "successful": False
         })
@@ -44,23 +44,16 @@ def register(request):
     password = data.get("password", "")
     confirmation = data.get("confirmation", "")
     
-    if "@" not in email:
-        return JsonResponse({
-            "error": "Invalid email. Email must include '@'.",
-            "error_field": "email",
-            "successful": False
-        })
-    
     if len(password) < 8:
         return JsonResponse({
-            "error": "Invalid password. Password must be at least 8 characters long.",
+            "error_message": "Invalid password. Password must be at least 8 characters long.",
             "error_field": "password",
             "successful": False
         })
 
     if password != confirmation:
         return JsonResponse({
-            "error": "Password must match.",
+            "error_message": "Password must match.",
             "error_field": "confirmation",
             "successful": False
         })
@@ -70,7 +63,7 @@ def register(request):
         user.save()
     except IntegrityError:
         return JsonResponse({
-            "error": "Username already taken.",
+            "error_message": "Username already taken.",
             "error_field": "username",
             "successful": False
         })

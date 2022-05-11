@@ -1,44 +1,21 @@
-loginButton = document.querySelector('[data-login-button]');
+document.querySelector('[data-login-button]').onclick = () => {login()}
 
-if (loginButton) {
-    document.querySelector('[data-login-button]').onclick = () => {
-        const inputFields = [
-            document.querySelector('[data-username]'),
-            document.querySelector('[data-password]')
-        ]
-
-        checkForErrors(inputFields, 'login');
-    }
-}
-
-registerButton = document.querySelector('[data-register-button]');
-
-if (registerButton) {
-    document.querySelector('[data-register-button]').onclick = () => {
-        const inputFields = [
-            document.querySelector('[data-username]'),
-            document.querySelector('[data-email]'),
-            document.querySelector('[data-password]'),
-            document.querySelector('[data-confirmation]')
-        ]
-
-        checkForErrors(inputFields, 'register');
-    }
-}
-
-function checkForErrors(inputFields, location) {
+function login() {
+    const inputFields = document.querySelectorAll('input');
+    const location = inputFields.length < 3 ? 'login' : 'register';
     let data = {};
 
     for (i = 0; i < inputFields.length; i++) {
         const inputField = inputFields[i];
-
-        inputField.oninput = () => {
-            inputField.setCustomValidity('');
-        }
+        inputField.oninput = () => {inputField.setCustomValidity('')}
 
         if (inputField.value === '') {
-            inputField.setCustomValidity('Field required.');
-            inputField.reportValidity();
+            returnError(inputField, 'Field required.');
+            return;
+        }
+
+        if (inputField.type === 'email' && !inputField.value.includes('@')) {
+            returnError(inputField, "Invalid email. Email must include '@'.");
             return;
         }
 
@@ -52,12 +29,12 @@ function checkForErrors(inputFields, location) {
     })
     .then(response => response.json())
     .then(request => {
-        if (request.successful) {
-            document.location.href = request.path;
-        } else {
-            const inputField = document.querySelector(`[data-${request.error_field}]`);
-            inputField.setCustomValidity(request.error);
-            inputField.reportValidity();
-        }
+        if (request.successful) {document.location.href = request.path}
+        else {returnError(document.querySelector(`[data-${request.error_field}]`), request.error_message)}
     });
+}
+
+function returnError(inputField, message) {
+    inputField.setCustomValidity(message);
+    inputField.reportValidity();
 }
